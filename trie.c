@@ -15,10 +15,10 @@ int add(char* word, trie* head){
 	trie* trav = head;
 
 	// Legnth of string
-	int legnth = strlen(word);
+	int length = strlen(word);
 
 	// Iterate through each letter in word
-	for(int i = 0; i < legnth; i++){
+	for(int i = 0; i < length; i++){
 		// Convert character to array index
 		int ai = tolower(word[i]) - 'a';
 
@@ -50,7 +50,7 @@ int add(char* word, trie* head){
 	trav->isWord = true;
 
 	// Return number of characters in word
-	return(strlen(word));
+	return(length);
 }
 
 void search(char* word, trie* head){
