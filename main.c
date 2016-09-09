@@ -27,26 +27,48 @@ int main(void){
 
 	char option[7];
 
+	// Continue until user types in quit
 	while(true){
+
+		// Ask for option
 		printf("add or search: ");
 		scanf("%s", option);
 
+		// add
 		if(strcmp(option, "add") == 0){
 			printf("Word to add: ");
 			char word[100];
 			scanf("%s", word);
-			add(word, head);
+
+			// Add the word; inform user if the word could not
+			// be added
+			if(add(word, head) < 0){
+				printf("Could not add word.\n");
+			}
 		}
+
+		// search
 		else if(strcmp(option, "search") == 0){
 			printf("Word to search: ");
 			char word[100];
 			scanf("%s", word);
-			search(word, head);
+
+			// Search for the word
+			if(search(word, head)){
+				printf("Word was found.\n");
+			}
+			else{
+				printf("Word was not found.\n");
+			}
 		}
+		
+		// quit
 		else if(strcmp(option, "quit") == 0){
 			printf("Exiting...\n");
 			break;
 		}
+
+		// invalid option
 		else{
 			printf("Invalid option\n");
 		}
