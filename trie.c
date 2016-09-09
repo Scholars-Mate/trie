@@ -6,10 +6,10 @@
 
 #include "trie.h"
 
-void add(char* word, node* head){
+void add(char* word, trie* head){
 	//TODO
 }
 
-void search(char* word, node* head){
+void search(char* word, trie* head){
 	//TODO
 }

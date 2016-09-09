@@ -12,7 +12,7 @@
 #include "trie.h"
 
 int main(void){
-	node* head = malloc(sizeof(node));
+	trie* head = malloc(sizeof(trie));
 
 	char option[7];
 
