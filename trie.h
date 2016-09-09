@@ -9,5 +9,5 @@ typedef struct trie{
          } trie;
 
 // Prototypes
-void add();
+int add();
 void search();
