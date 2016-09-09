@@ -4,12 +4,16 @@
  * Includes functions for manipulating the trie
  */ 
 
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include "trie.h"
 
+/*
+ * This function will a word to the trie indicated by head
+ * On success, it will return the length of the word
+ * Else, it will return a negative value
+ */
 int add(char* word, trie* head){
 	// Traversal pointer
 	trie* trav = head;
@@ -30,7 +34,6 @@ int add(char* word, trie* head){
 			// values to NULL and false
 			trav->letter[ai] = malloc(sizeof(trie));
 			if(trav->letter[ai] == NULL){
-				printf("Could not allocate memory.\n");
 				return(-1);
 			}
 			trav = trav->letter[ai];
@@ -53,6 +56,11 @@ int add(char* word, trie* head){
 	return(length);
 }
 
+/*
+ * This function will search the trie for the word
+ * If found, it will return true (1)
+ * Else, it will return false (0)
+ */
 int search(char* word, trie* head){
 	// Traversal pointer
 	trie* trav = head;
@@ -68,7 +76,7 @@ int search(char* word, trie* head){
 
 		// If the pointer is NULL, the word does is not in trie
 		if(trav->letter[ai] == NULL){
-			return(0);
+			return(false);
 		}
 
 		// Otherwise, move trav to the next trie
@@ -76,10 +84,10 @@ int search(char* word, trie* head){
 	}
 
 	// Should be at end of word, check if "isWord" is true
-	if(trav->isWord == true){
-		return(1);
+	if(trav->isWord){
+		return(true);
 	}
 	else{
-		return(0);
+		return(false);
 	}
 }
