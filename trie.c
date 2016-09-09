@@ -53,6 +53,33 @@ int add(char* word, trie* head){
 	return(length);
 }
 
-void search(char* word, trie* head){
-	//TODO
+int search(char* word, trie* head){
+	// Traversal pointer
+	trie* trav = head;
+
+	// Length of word
+	int length = strlen(word);
+
+	// Iterate through each letter in word
+	for(int i = 0; i < length; i++){
+
+		// Convert letter to array index
+		int ai = tolower(word[i]) - 'a';
+
+		// If the pointer is NULL, the word does is not in trie
+		if(trav->letter[ai] == NULL){
+			return(0);
+		}
+
+		// Otherwise, move trav to the next trie
+		trav = trav->letter[ai];
+	}
+
+	// Should be at end of word, check if "isWord" is true
+	if(trav->isWord == true){
+		return(1);
+	}
+	else{
+		return(0);
+	}
 }

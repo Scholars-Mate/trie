@@ -10,4 +10,4 @@ typedef struct trie{
 
 // Prototypes
 int add();
-void search();
+int search();
