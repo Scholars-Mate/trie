@@ -1,5 +1,7 @@
 /* trie.h */
 
+#include <stdbool.h>
+
 // struct used to store trie
 typedef struct trie{
                  struct trie* a;
@@ -28,6 +30,7 @@ typedef struct trie{
                  struct trie* x;
                  struct trie* y;
                  struct trie* z;
+		 bool isWord;
          } trie;
 
 // Prototypes
