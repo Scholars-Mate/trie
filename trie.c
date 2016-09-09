@@ -1,4 +1,8 @@
-/* helpers.c */
+/*
+ * trie.c
+ *
+ * Includes functions for manipulating the trie
+ */ 
 
 #include "trie.h"
 

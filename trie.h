@@ -1,4 +1,4 @@
-/* helpers.h */
+/* trie.h */
 
 // struct used to store trie
 typedef struct node{

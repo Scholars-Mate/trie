@@ -1,3 +1,10 @@
+/*
+ * main.c
+ * Main program code
+ *
+ * Interactively asks for a command, then appropriate argument
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
