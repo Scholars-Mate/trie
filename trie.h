@@ -11,3 +11,4 @@ typedef struct trie{
 // Prototypes
 int add();
 int search();
+int delete();
