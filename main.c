@@ -31,7 +31,7 @@ int main(void){
 	while(true){
 
 		// Ask for option
-		printf("add or search: ");
+		printf("add, search, or delete: ");
 		scanf("%s", option);
 
 		// add
@@ -59,6 +59,21 @@ int main(void){
 			}
 			else{
 				printf("Word was not found.\n");
+			}
+		}
+
+		// delete
+		else if(strcmp(option, "delete") == 0){
+			printf("Word to delete: ");
+			char word[100];
+			scanf("%s", word);
+
+			// Check if the word exists
+			if(!(search(word, head))){
+				printf("Word not in tree.\n");
+			}
+			else{
+				delete(word, head);
 			}
 		}
 		
