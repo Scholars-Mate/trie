@@ -73,7 +73,7 @@ int main(void){
 				printf("Word not in tree.\n");
 			}
 			else{
-				delete(word, head);
+				delete(word, &head);
 			}
 		}
 		
