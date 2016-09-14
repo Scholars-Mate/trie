@@ -62,8 +62,10 @@ int add(char* word, trie* head){
  * Else, it will return false (0)
  */
 int search(char* word, trie* head){
-	// Traversal pointer
-	trie* trav = head;
+	// Check if head is a NULL pointer
+	if(head == NULL){
+		return(false);
+	}
 
 	// Length of word
 	int length = strlen(word);
@@ -75,16 +77,16 @@ int search(char* word, trie* head){
 		int ai = tolower(word[i]) - 'a';
 
 		// If the pointer is NULL, the word does is not in trie
-		if(trav->letter[ai] == NULL){
+		if(head->letter[ai] == NULL){
 			return(false);
 		}
 
-		// Otherwise, move trav to the next trie
-		trav = trav->letter[ai];
+		// Otherwise, move head to the next trie
+		head = head->letter[ai];
 	}
 
 	// Should be at end of word, check if "isWord" is true
-	if(trav->isWord){
+	if(head->isWord){
 		return(true);
 	}
 	else{
