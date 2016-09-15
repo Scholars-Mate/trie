@@ -67,6 +67,11 @@ int main(void){
 				delete(word, &head);
 			}
 		}
+
+		// list
+		else if(strcmp(option, "list") == 0){
+			list(head);
+		}
 		
 		// quit
 		else if(strcmp(option, "quit") == 0){

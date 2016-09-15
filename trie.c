@@ -4,6 +4,7 @@
  * Includes functions for manipulating the trie
  */ 
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
@@ -24,7 +25,7 @@ int add(char* word, trie** head){
 		for(int i = 0; i < 26; i++){
 			(*head)->letter[i] = NULL;
 		}
-		(*head)->isWord = true;
+		(*head)->isWord = false;
 	}
 
 	// Traversal pointer
@@ -158,5 +159,52 @@ int delete(char* word, trie** head){
 	// Otherwise, remove the node and set head to NULL
 	free(trav);
 	*head = NULL;
+	return(0);
+}
+
+/*
+ * This function will check for a NULL pointer and call
+ * the recursive function rlist to list all the words in the trie
+ * Returns 0 on success and a nonzero number on error
+ */
+int list(trie* head){
+	// Check for head being a NULL pointer
+	if(head == NULL){
+		printf("No words in trie.\n");
+		return(0);
+	}
+
+	// Empty variable for word
+	char word = 0;
+
+	// Call recursive function
+	rlist(&word, head);
+
+	return(0);
+}
+
+/*
+ * This function will recursively list the words in the trie given by head
+ */
+int rlist(char* word, trie* head){
+	// Length of word
+	int length = strlen(word);
+
+	// Print the word if the trie is signaling the end of a word
+	if(head->isWord == true){
+		printf("%s\n", word);
+	}
+
+	// Iterate through each letter
+	for(int i = 0; i < 26; i++){
+		if(head->letter[i] != NULL){
+			// Recursively call rlist with new arguments
+			char newword[length + 2];
+			strcpy(newword, word);
+			newword[length] = i + 'a';
+			newword[length + 1] = 0;
+			rlist(newword, head->letter[i]);
+		}
+	}
 	return(0);
 }

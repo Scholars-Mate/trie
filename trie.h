@@ -12,3 +12,5 @@ typedef struct trie{
 int add();
 int search();
 int delete();
+int list();
+int rlist();
