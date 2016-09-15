@@ -12,18 +12,9 @@
 #include "trie.h"
 
 int main(void){
-	// Make head of trie
-	trie* head = malloc(sizeof(trie));
-	if(head == NULL){
-		printf("Could not allocate memory. Exiting...\n");
-		return(1);
-	}
-
-	// Initialize values in head
-	for(int i = 0; i < 26; i++){
-		head->letter[i] = NULL;
-	}
-	head->isWord = false;
+	// Head of trie
+	trie* head;
+	head = NULL;
 
 	char option[7];
 
@@ -42,7 +33,7 @@ int main(void){
 
 			// Add the word; inform user if the word could not
 			// be added
-			if(add(word, head) < 0){
+			if(add(word, &head) < 0){
 				printf("Could not add word.\n");
 			}
 		}

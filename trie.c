@@ -14,9 +14,21 @@
  * On success, it will return the length of the word
  * Else, it will return a negative value
  */
-int add(char* word, trie* head){
+int add(char* word, trie** head){
+	// Check for NULL pointer
+	if(*head == NULL){
+		*head = malloc(sizeof(trie));
+		if(*head == NULL){
+			return(-1);
+		}
+		for(int i = 0; i < 26; i++){
+			(*head)->letter[i] = NULL;
+		}
+		(*head)->isWord = true;
+	}
+
 	// Traversal pointer
-	trie* trav = head;
+	trie* trav = *head;
 
 	// Legnth of string
 	int length = strlen(word);
