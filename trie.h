@@ -14,3 +14,4 @@ int search();
 int delete();
 int list();
 int rlist();
+int cleartrie();

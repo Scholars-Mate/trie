@@ -72,6 +72,11 @@ int main(void){
 		else if(strcmp(option, "list") == 0){
 			list(head);
 		}
+
+		// clear
+		else if(strcmp(option, "clear") == 0){
+			cleartrie(&head);
+		}
 		
 		// quit
 		else if(strcmp(option, "quit") == 0){
@@ -85,7 +90,7 @@ int main(void){
 		}
 	}
 
-	free(head);
+	cleartrie(&head);
 
 	return 0;
 }

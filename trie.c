@@ -208,3 +208,19 @@ int rlist(char* word, trie* head){
 	}
 	return(0);
 }
+
+/*
+ * This function will recursively clear the trie pointed at by head
+ * Return 0 on success
+ */
+int cleartrie(trie** head){
+	for(int i = 0; i < 26; i++){
+		if((*head)->letter[i] != NULL){
+			cleartrie(&((*head)->letter[i]));
+		}
+	}
+	free(*head);
+	*head = NULL;
+
+	return(0);
+}
