@@ -214,6 +214,11 @@ int rlist(char* word, trie* head){
  * Return 0 on success
  */
 int cleartrie(trie** head){
+	// Check for NULL pointer
+	if(*head == NULL){
+		return(-1);
+	}
+
 	for(int i = 0; i < 26; i++){
 		if((*head)->letter[i] != NULL){
 			cleartrie(&((*head)->letter[i]));
