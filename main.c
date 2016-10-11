@@ -10,6 +10,7 @@
 #include <string.h>
 #include <stdbool.h>
 #include "trie.h"
+#include "input.h"
 
 int main(void){
 	// Head of trie
