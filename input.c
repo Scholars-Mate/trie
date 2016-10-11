@@ -10,17 +10,23 @@ char* getString(void){
 		return(NULL);
 	}
 
-	for(int i = 0, letter = 0, arraySize = 16;
-	    (letter = getchar()) != '\n' && feof(stdin) == 0; i++){
-		if(i + 1 == arraySize){
+	int arrayIndex = 0;
+	int letter = 0;
+	int arraySize = 16;
+
+	while((letter = getchar()) != '\n' && feof(stdin) == 0){
+		if(arrayIndex + 1 == arraySize){
 			input = realloc(input, sizeof(char) * (arraySize *= 2));
 			if(input == NULL){
 				return(NULL);
 			}
 		}
 
-		input[i] = letter;
+		input[arrayIndex] = letter;
+		arrayIndex++;
 	}
+
+	input[arrayIndex] = '\0';
 
 	return(input);
 }
