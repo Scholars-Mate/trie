@@ -17,34 +17,34 @@ int main(void){
 	trie* head;
 	head = NULL;
 
-	char option[7];
+	char* option;
 
 	// Continue until user types in quit
 	while(true){
 
 		// Ask for option
+		free(option);
 		printf("add, search, or delete: ");
-		scanf("%s", option);
+		option = getString();
 
 		// add
 		if(strcmp(option, "add") == 0){
 			printf("Word to add: ");
-			char word[100];
-			scanf("%s", word);
-
+			char* word;
+			word = getString();
 			// Add the word; inform user if the word could not
 			// be added
 			if(add(word, &head) < 0){
 				printf("Could not add word.\n");
 			}
+			free(word);
 		}
 
 		// search
 		else if(strcmp(option, "search") == 0){
 			printf("Word to search: ");
-			char word[100];
-			scanf("%s", word);
-
+			char* word;
+			word = getString();
 			// Search for the word
 			if(search(word, head)){
 				printf("Word was found.\n");
@@ -52,13 +52,14 @@ int main(void){
 			else{
 				printf("Word was not found.\n");
 			}
+			free(word);
 		}
 
 		// delete
 		else if(strcmp(option, "delete") == 0){
 			printf("Word to delete: ");
-			char word[100];
-			scanf("%s", word);
+			char* word;
+			word = getString();
 
 			// Check if the word exists
 			if(!(search(word, head))){
@@ -67,6 +68,7 @@ int main(void){
 			else{
 				delete(word, &head);
 			}
+			free(word);
 		}
 
 		// list
@@ -91,6 +93,7 @@ int main(void){
 		}
 	}
 
+	free(option);
 	cleartrie(&head);
 
 	return 0;
