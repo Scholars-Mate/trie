@@ -18,14 +18,10 @@
 int add(char* word, trie** head){
 	// Check for NULL pointer
 	if(*head == NULL){
-		*head = malloc(sizeof(trie));
+		*head = calloc(1, sizeof(trie));
 		if(*head == NULL){
 			return(-1);
 		}
-		for(int i = 0; i < 26; i++){
-			(*head)->letter[i] = NULL;
-		}
-		(*head)->isWord = false;
 	}
 
 	// Traversal pointer
@@ -41,21 +37,14 @@ int add(char* word, trie** head){
 
 		// If the letter does not have a pointer
 		if(trav->letter[ai] == NULL){
-
 			// Give the letter a pointer, check that memory was
-			// allocated, move trav to the new trie, and initialize
-			// values to NULL and false
-			trav->letter[ai] = malloc(sizeof(trie));
+			// allocated, and move trav to the new trie
+			trav->letter[ai] = calloc(1, sizeof(trie));
 			if(trav->letter[ai] == NULL){
 				return(-1);
 			}
 			trav = trav->letter[ai];
-			for(int k = 0; k < 26; k++){
-				trav->letter[k] = NULL;
-			}
-			trav->isWord = false;
 		}
-
 		// Otherwise, move trav to the next trie
 		else{
 			trav = trav->letter[ai];
