@@ -102,52 +102,43 @@ int search(char* word, trie* head){
  * A positive nonzero return value indicates some error
  */
 int delete(char* word, trie** head){
-	// Traversal pointer
-	trie* trav = *head;
-
 	// Length of word
 	int length = strlen(word);
 
-	// Check for end of word
-	if(length == 0){
-		// Cannot remove if other words branching from here
-		for(int i = 0; i < 26; i++){
-			if(trav->letter[i] != NULL){
-				trav->isWord = false;
-				return(0);
+	// Traversal pointers
+	trie** trav[length];
+	int ai = tolower(word[0]) - 'a';
+	trav[0] = &((*head)->letter[ai]);
+
+	// Get array of traversal pointers
+	for(int i = 0; i < length - 1; i++){
+		ai = tolower(word[i + 1]) - 'a';
+		trav[i + 1] = (&(*trav[i])->letter[ai]);
+	}
+
+	// Unset word
+	(*trav[length - 1])->isWord = false;
+
+	// Free memory if possible
+	bool ok = true;
+	for(int i = length - 1; i >= 0; i--){
+		for(int j = 0; j < 26; j++){
+			if((*trav[i])->letter[j] != NULL){
+				ok = false;
+				break;
 			}
 		}
-		
-		// Otherwise, free the head, and set it to NULL
-		free(trav);
-		*head = NULL;
-		return(0);
-	}
-	else{
-		// Recursively call delete with new arguments
-		char newword[length];
-		for(int i = 0; i < length; i++){
-			newword[i] = word[i + 1];
+		if((*trav[i])->isWord){
+			ok = false;
 		}
-		trie** newhead = &(trav->letter[(tolower(word[0]) - 'a')]);
-		delete(newword, newhead);
-	}
-
-	// Cannot remove node if there are other words branching from here
-	for(int i = 0; i < 26; i++){
-		if(trav->letter[i] != NULL){
-			return(0);
+		if(ok){
+			free(*trav[i]);
+			*trav[i] = NULL;
+		}
+		else{
+			break;
 		}
 	}
-
-	// Cannot remove node if it is used to signal presence of word
-	if(trav->isWord){
-		return(0);
-	}
-
-	// Otherwise, remove the node and set head to NULL
-	free(trav);
-	*head = NULL;
 	return(0);
 }
 
