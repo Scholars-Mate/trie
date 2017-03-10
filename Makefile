@@ -1,14 +1,15 @@
-trie: main.o trie.o input.o
-	gcc -Wall -Werror -pedantic -std=c11 main.o trie.o input.o -o trie
+CC=@gcc
+MAKEOPTS=-Wall -Werror -pedantic -std=c11
+SOURCES=$(wildcard *.c)
+OBJECTS=$(SOURCES:.c=.o)
 
-main.o: main.c
-	gcc -Wall -Werror -pedantic -std=c11 -c main.c
+trie: $(OBJECTS)
+	@echo "[CC]" $@
+	$(CC) -o $@ $(MAKEOPTS) $^
 
-trie.o: trie.c
-	gcc -Wall -Werror -pedantic -std=c11 -c trie.c
-
-input.o: input.c
-	gcc -Wall -Werror -pedantic -std=c11 -c input.c
+%.o: %.c
+	@echo "[CC]" $@
+	$(CC) -c $< $(MAKEOPTS)
 
 clean:
 	rm -rf *.o trie
